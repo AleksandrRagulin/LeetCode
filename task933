@@ -1,0 +1,21 @@
+class RecentCounter {
+public:
+    RecentCounter() {
+
+    }
+    int ping(int t) {
+        int res = 1;
+        if(calls.empty()){
+            calls.push_back(t);
+            return res;
+        }
+        for(auto it = calls.end() - 1; it >= calls.begin(); it-- ){
+            if(t - 3000 <= *it) res++;
+            else break;
+        }
+        calls.push_back(t);
+        return res;
+    }
+private:
+    vector<int> calls;
+};
